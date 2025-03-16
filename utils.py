@@ -62,19 +62,19 @@ if os.path.exists("videometa.pkl"):
     with open("videometa.pkl", 'rb') as file: 
         videometa = pickle.load(file)
 else:
-    with open("links.csv", "r") as f:
+    with open("sit2stand-analysis/links.csv", "r") as f:
         csvFile = csv.reader(f)
  
         # displaying the contents of the CSV file
         for lines in csvFile:
             videoid = lines[0]
-            filename = "videos/raw/" + lines[1].split("/")[-1]
+            filename = "sit2stand-analysis/videos/raw/" + lines[1].split("/")[-1]
             videometa[videoid] = {
                 "framerate": get_framerate(filename, videoid),
                 "filepath": lines[1],
                 "videoid": lines[1].split("/")[-1][:-4]
             }
-    with open("videometa.pkl", 'wb') as file: 
+    with open("sit2stand-analysis/videometa.pkl", 'wb') as file: 
         pickle.dump(videometa, file)
 
 # Convert OpenPose frames to a numpy array
